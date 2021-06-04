@@ -2,7 +2,7 @@
 
 namespace TimeEntrySystem.Models
 {
-    internal class DbInit : DropCreateDatabaseIfModelChanges<TimeEntryCtx>
+    internal class DbInit : CreateDatabaseIfNotExists<TimeEntryCtx>
     {
         protected override void Seed(TimeEntryCtx context)
         {

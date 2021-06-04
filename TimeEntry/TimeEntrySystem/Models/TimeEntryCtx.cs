@@ -8,7 +8,8 @@ namespace TimeEntrySystem.Models
 {
     public class TimeEntryCtx : DbContext
     {
-        public TimeEntryCtx()
+        public static string DBConnectionString = "";
+        public TimeEntryCtx() :base(DBConnectionString)
         {
             Database.SetInitializer<TimeEntryCtx>(new DbInit());
         }

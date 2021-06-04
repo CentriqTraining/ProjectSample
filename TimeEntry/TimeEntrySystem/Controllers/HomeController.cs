@@ -61,13 +61,15 @@ namespace TimeEntrySystem.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,CreatedDate,Hours,Project,Employee")] LogEntryViewModel logEntry)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ID,Hours,Project,Employee")] LogEntryViewModel logEntry)
         {
             if (ModelState.IsValid)
             {
-                var Employee = db.Employees.FirstOrDefault(emp => emp.ID == logEntry.Employee);
-                var Project = db.Projects.FirstOrDefault(proj => proj.ID == logEntry.Project);
+                var Empls = db.Employees.ToList();
+                var Projs = db.Projects.ToList();
+                var Employee = db.Employees.Find(logEntry.Employee);
+                var Project = db.Projects.Find(logEntry.Project);
 
                 if (Employee == null)
                 {
